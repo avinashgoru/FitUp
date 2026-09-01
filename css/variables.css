@@ -1,0 +1,79 @@
+:root {
+    /* Colors */
+    --color-background: #F8F7F4; /* Warm off-white */
+    --color-background-alt: #EFEFEF; /* Soft gray */
+    --color-surface: #F4F4F4; /* Soft surface gray */
+    --color-surface-light: #FFFFFF; /* White */
+    --color-white: #FFFFFF;
+    
+    --color-text: #111820; /* Deep navy / blue-black */
+    --color-text-muted: #6B7280; /* Muted gray text */
+    --color-text-light: #9CA3AF;
+    --color-primary: #1C2331; /* Deep navy emphasis */
+    
+    --color-border: #E5E7EB; /* Subtle border */
+    --color-border-light: #F3F4F6;
+
+    /* Typography */
+    --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Type Scale using clamp for fluid responsive typography */
+    --text-display: clamp(3rem, 5vw + 1rem, 5.5rem);
+    --text-heading-lg: clamp(2.25rem, 4vw + 0.5rem, 4rem);
+    --text-heading-section: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
+    --text-subheading: clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
+    --text-body: clamp(1rem, 1vw + 0.5rem, 1.125rem);
+    --text-small: 0.875rem;
+    --text-nav: 0.9375rem;
+    --text-label: 0.75rem;
+    
+    --line-height-tight: 1.1;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.7;
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.05em;
+
+    /* Spacing */
+    --space-1: 0.25rem;  /* 4px */
+    --space-2: 0.5rem;   /* 8px */
+    --space-3: 0.75rem;  /* 12px */
+    --space-4: 1rem;     /* 16px */
+    --space-5: 1.5rem;   /* 24px */
+    --space-6: 2rem;     /* 32px */
+    --space-7: 3rem;     /* 48px */
+    --space-8: 4rem;     /* 64px */
+    --space-9: 6rem;     /* 96px */
+    --space-10: 8rem;    /* 128px */
+    --space-11: 12rem;   /* 192px */
+
+    /* Layout */
+    --container-width: 1400px;
+    --container-padding: var(--space-5);
+
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-pill: 9999px;
+
+    /* Borders */
+    --border-width: 1px;
+    --border-style: solid;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+
+    /* Transitions */
+    --transition-fast: 0.15s ease-out;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}

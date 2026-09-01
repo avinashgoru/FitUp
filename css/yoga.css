@@ -1,0 +1,206 @@
+/* YOGA STYLES SECTION */
+
+/* Header Composition */
+.yoga__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-8);
+    gap: var(--space-6);
+}
+
+.yoga__heading {
+    flex: 1 1 50%;
+}
+
+.yoga__eyebrow {
+    font-size: var(--text-label);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    margin-bottom: var(--space-3);
+}
+
+.yoga__title {
+    font-size: var(--text-heading-lg);
+    line-height: var(--line-height-tight);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--color-text);
+}
+
+.yoga__intro {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    max-width: 480px;
+    padding-bottom: var(--space-2);
+}
+
+.yoga__description {
+    font-size: var(--text-body);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-relaxed);
+}
+
+.yoga__action-container {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-8);
+}
+
+.yoga__check-all {
+    /* Uses .btn .btn-outline from global.css */
+    font-size: var(--text-label);
+    padding: var(--space-3) var(--space-6);
+    letter-spacing: var(--letter-spacing-wide);
+    border-radius: var(--radius-pill);
+    min-width: 160px;
+}
+
+/* Grid System */
+.yoga__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+}
+
+/* Card Styling */
+.yoga-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.yoga-card--hidden {
+    display: none;
+}
+
+.yoga-card__image-container {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background-color: var(--color-surface);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    transition: transform var(--transition-slow);
+}
+
+.yoga-card__bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    color: #ffffff;
+    opacity: 0.4;
+    z-index: 2;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+    letter-spacing: 0.05em;
+}
+
+.yoga-card:hover .yoga-card__image-container {
+    transform: scale(1.02);
+}
+
+.yoga-card__info-pill {
+    position: absolute;
+    bottom: var(--space-4);
+    left: var(--space-4);
+    right: var(--space-4);
+    background-color: var(--color-background);
+    border-radius: var(--radius-pill);
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform var(--transition-fast);
+}
+
+.yoga-card:hover .yoga-card__info-pill {
+    transform: translateY(-4px);
+}
+
+.yoga-card__title {
+    font-size: var(--text-small);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.yoga-card__arrow {
+    font-size: var(--text-small);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    transition: transform var(--transition-fast);
+}
+
+.yoga-card:hover .yoga-card__arrow {
+    transform: translateX(4px);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .yoga-card:hover .yoga-card__image-container {
+        transform: none;
+    }
+    .yoga-card:hover .yoga-card__info-pill {
+        transform: none;
+    }
+    .yoga-card:hover .yoga-card__arrow {
+        transform: none;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1199px) {
+    .yoga__grid {
+        gap: var(--space-4);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .yoga__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-5);
+    }
+    
+    .yoga__intro {
+        max-width: 100%;
+    }
+
+    .yoga__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-5);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .yoga__title {
+        font-size: clamp(2.5rem, 5vw + 1rem, 3.5rem);
+    }
+    
+    .yoga__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+    
+    .yoga-card__image-container {
+        aspect-ratio: 16/11; /* Wider aspect ratio on mobile to save vertical scrolling space */
+    }
+}

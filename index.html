@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitUp - Premium Wellness & Fitness</title>
+    <meta name="description" content="FitUp is a premium fitness and wellness platform offering balanced meals, yoga styles, and community events.">
+    
+    <!-- Open Graph SEO -->
+    <meta property="og:title" content="FitUp - Premium Wellness & Fitness">
+    <meta property="og:description" content="FitUp is a premium fitness and wellness platform offering balanced meals, yoga styles, and community events.">
+    <meta property="og:type" content="website">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/why-fitup.css">
+    <link rel="stylesheet" href="css/meals.css">
+    <link rel="stylesheet" href="css/yoga.css">
+    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- JS -->
+    <script src="js/main.js" type="module"></script>
+</head>
+<body>
+
+    <header id="site-header" class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a class="navbar__logo fitup-emphasis" href="#hero" aria-label="FITUP home">
+                FITUP
+            </a>
+
+            <div class="navbar__menu" id="mobile-navigation" data-state="closed">
+                <div class="navbar__links">
+                    <a href="#why-fitup" class="navbar__link">Why Fitup</a>
+                    <a href="#meals" class="navbar__link">Meals</a>
+                    <a href="#yoga" class="navbar__link">Yoga</a>
+                    <a href="#events" class="navbar__link">Events</a>
+                </div>
+                
+                <a class="navbar__contact btn btn-secondary" href="#site-footer">
+                    <svg class="icon navbar__contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"></circle>
+                        <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+                    </svg>
+                    Contact Us
+                </a>
+            </div>
+
+            <button
+                class="navbar__toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mobile-navigation">
+                <span class="navbar__toggle-line"></span>
+                <span class="navbar__toggle-line"></span>
+                <span class="navbar__toggle-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero container" aria-labelledby="hero-title">
+            <div class="hero__layout">
+                <!-- LEFT: Content -->
+                <div class="hero__content">
+                    <h1 id="hero-title" class="hero__title">
+                        Perfect<br>
+                        Fitness Path<br>
+                        With <span class="fitup-emphasis">fitup</span>
+                    </h1>
+                    
+                    <p class="hero__description">
+                        Unlock your full potential with tailored training programs, all crafted to help you achieve your fitness goals
+                    </p>
+                    
+                    <div class="hero__actions">
+                        <a href="#why-fitup" class="btn btn-primary">Get Started</a>
+                        
+                        <div class="hero__community">
+                            <span class="hero__community-text">Join Our Community</span>
+                            <div class="hero__community-icons">
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.1"/><path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.1"/><path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.1"/><path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero__stats">
+                        <div class="hero__stat">
+                            <strong class="hero__stat-value">500k+</strong>
+                            <span class="hero__stat-label">Personalized training<br>programs delivered</span>
+                        </div>
+                        <div class="hero__stat">
+                            <strong class="hero__stat-value">10k+</strong>
+                            <span class="hero__stat-label">Active members<br>achieving results</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Visual Composition -->
+                <div class="hero__visual">
+                    <div class="decorative-radial hero__decoration" aria-hidden="true"></div>
+                    
+                    <div class="hero__image-container">
+                        <img src="assets/images/hero.jpg" alt="Female fitness athlete training in a gym" class="img-cover">
+                    </div>
+                    
+                    <div class="floating-card hero__overview">
+                        <div class="hero__overview-header">
+                            <span class="hero__card-title">Weekly Overview</span>
+                        </div>
+                        <div class="hero__overview-chart">
+                            <div class="hero__chart-bar hero__chart-bar--1"></div>
+                            <div class="hero__chart-bar hero__chart-bar--2"></div>
+                            <div class="hero__chart-bar hero__chart-bar--3"></div>
+                            <div class="hero__chart-bar hero__chart-bar--4"></div>
+                            <div class="hero__chart-bar hero__chart-bar--5"></div>
+                        </div>
+                        <span class="hero__card-subtitle">Peak Performance</span>
+                    </div>
+                    
+                    <div class="floating-card hero__members">
+                        <span class="hero__card-title">Members Joined</span>
+                        <div class="hero__members-avatars">
+                            <div class="hero__avatar"></div>
+                            <div class="hero__avatar"></div>
+                            <div class="hero__avatar"></div>
+                        </div>
+                        <span class="hero__card-subtitle">12k+ new</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-fitup" class="why-fitup section container" aria-labelledby="why-fitup-title">
+            <div class="why-fitup__layout">
+                <!-- LEFT: Primary Visual -->
+                <div class="why-fitup__visual reveal">
+                    <div class="decorative-radial why-fitup__decoration" aria-hidden="true"></div>
+                    <div class="why-fitup__image-container">
+                        <img src="assets/images/why-fitup.jpg" alt="Fit person stretching outdoors" class="img-cover">
+                    </div>
+                </div>
+
+                <!-- RIGHT: Content -->
+                <div class="why-fitup__content">
+                    <p class="why-fitup__eyebrow reveal reveal--delay-1">Why Fitup Works</p>
+                    
+                    <h2 id="why-fitup-title" class="why-fitup__title reveal reveal--delay-2">
+                        A personalized<br>
+                        approach to your<br>
+                        <span class="fitup-emphasis">well-being</span>
+                    </h2>
+                    
+                    <p class="why-fitup__description reveal reveal--delay-3">
+                        We blend expert coaching with intelligent tracking to deliver a seamless fitness experience designed entirely around your lifestyle and goals.
+                    </p>
+                    
+                    <div class="why-fitup__features">
+                        <div class="card why-fitup__feature reveal reveal--delay-4">
+                            <div class="why-fitup__feature-header">
+                                <span class="why-fitup__feature-number">1.</span>
+                                <h3 class="why-fitup__feature-title">Personalized Training</h3>
+                            </div>
+                            <p class="why-fitup__feature-desc">Workouts tuned to your specific fitness level and aspirations.</p>
+                        </div>
+                        
+                        <div class="card why-fitup__feature">
+                            <div class="why-fitup__feature-header">
+                                <span class="why-fitup__feature-number">2.</span>
+                                <h3 class="why-fitup__feature-title">Health Tracking</h3>
+                            </div>
+                            <p class="why-fitup__feature-desc">Monitor your progress with intelligent metrics and insights.</p>
+                        </div>
+                        
+                        <div class="card why-fitup__feature reveal reveal--delay-5">
+                            <div class="why-fitup__feature-header">
+                                <span class="why-fitup__feature-number">3.</span>
+                                <h3 class="why-fitup__feature-title">Balanced Wellness</h3>
+                            </div>
+                            <p class="why-fitup__feature-desc">A holistic focus combining movement, nutrition, and recovery.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="meals" class="meals section container" aria-labelledby="meals-title">
+            <div class="meals__layout">
+                <!-- LEFT: Content -->
+                <div class="meals__content">
+                    <p class="meals__eyebrow reveal reveal--delay-1">Balanced Meals</p>
+                    
+                    <h2 id="meals-title" class="meals__title reveal reveal--delay-2">
+                        Nourish your<br>
+                        body with <span class="fitup-emphasis">purpose</span>
+                    </h2>
+                    
+                    <p class="meals__description reveal reveal--delay-3">
+                        Fuel your workouts and recovery with nutritionally balanced meals designed for optimal performance and well-being.
+                    </p>
+                    
+                    <div class="meals__selector-container reveal reveal--delay-4">
+                        <div class="meals__selector" role="tablist" aria-label="Meal type">
+                            <button type="button" class="meals__tab" role="tab" aria-selected="true" data-meal="non-vegan">
+                                Non Vegan
+                            </button>
+                            <button type="button" class="meals__tab" role="tab" aria-selected="false" data-meal="vegan">
+                                Vegan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Visual -->
+                <div class="meals__visual reveal reveal--delay-1">
+                    <div class="decorative-radial meals__decoration" aria-hidden="true"></div>
+                    
+                    <div class="meals__image-container" id="meal-image-container">
+                        <img src="assets/images/meals.jpg" alt="Healthy balanced food bowl with fresh ingredients" class="img-cover" id="meal-image">
+                    </div>
+                    
+                    <!-- Nutrition / Calorie Card -->
+                    <div class="floating-card meals__nutrition" aria-live="polite">
+                        <span class="meals__nutrition-label">Calories</span>
+                        <strong class="meals__calories-value" id="meal-calories">620 kcal</strong>
+                        <div class="meals__nutrition-details">
+                            <span id="meal-protein">45g Protein</span>
+                            <span id="meal-carbs">60g Carbs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="yoga" class="yoga section container" aria-labelledby="yoga-title">
+            <div class="yoga__header">
+                <div class="yoga__heading reveal reveal--delay-1">
+                    <h2 id="yoga-title" class="yoga__title">
+                        Find Your Perfect<br>
+                        <span class="fitup-emphasis">Yoga style</span>
+                    </h2>
+                </div>
+                
+                <div class="yoga__intro reveal reveal--delay-2">
+                    <p class="yoga__description">
+                        Explore a variety of yoga practices designed to build strength, increase flexibility, and restore inner balance.
+                    </p>
+                </div>
+            </div>
+
+            <div class="yoga__grid" id="yoga-grid">
+                <!-- Card 1 -->
+                <article class="yoga-card reveal reveal--delay-1">
+                    <div class="yoga-card__image-container">
+                        <span class="yoga-card__bg-text" aria-hidden="true">YOGA</span>
+                        <div class="abstract-visual abstract-visual--yoga" aria-hidden="true"></div>
+                    </div>
+                    <div class="yoga-card__info-pill">
+                        <h3 class="yoga-card__title">01 — Muscle Stretch</h3>
+                        <span class="yoga-card__arrow" aria-hidden="true">→</span>
+                    </div>
+                </article>
+                
+                <!-- Card 2 -->
+                <article class="yoga-card reveal reveal--delay-2">
+                    <div class="yoga-card__image-container">
+                        <span class="yoga-card__bg-text" aria-hidden="true">YOGA</span>
+                        <div class="abstract-visual abstract-visual--yoga" aria-hidden="true"></div>
+                    </div>
+                    <div class="yoga-card__info-pill">
+                        <h3 class="yoga-card__title">02 — Relaxation Stretch</h3>
+                        <span class="yoga-card__arrow" aria-hidden="true">→</span>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="yoga-card reveal reveal--delay-3">
+                    <div class="yoga-card__image-container">
+                        <span class="yoga-card__bg-text" aria-hidden="true">YOGA</span>
+                        <div class="abstract-visual abstract-visual--yoga" aria-hidden="true"></div>
+                    </div>
+                    <div class="yoga-card__info-pill">
+                        <h3 class="yoga-card__title">03 — Balance Booster</h3>
+                        <span class="yoga-card__arrow" aria-hidden="true">→</span>
+                    </div>
+                </article>
+
+                <!-- Card 4 (Hidden initially) -->
+                <article class="yoga-card yoga-card--hidden">
+                    <div class="yoga-card__image-container">
+                        <span class="yoga-card__bg-text" aria-hidden="true">YOGA</span>
+                        <div class="abstract-visual abstract-visual--yoga" aria-hidden="true"></div>
+                    </div>
+                    <div class="yoga-card__info-pill">
+                        <h3 class="yoga-card__title">04 — Flexibility Enhancer</h3>
+                        <span class="yoga-card__arrow" aria-hidden="true">→</span>
+                    </div>
+                </article>
+
+                <!-- Card 5 (Hidden initially) -->
+                <article class="yoga-card yoga-card--hidden">
+                    <div class="yoga-card__image-container">
+                        <span class="yoga-card__bg-text" aria-hidden="true">YOGA</span>
+                        <div class="abstract-visual abstract-visual--yoga" aria-hidden="true"></div>
+                    </div>
+                    <div class="yoga-card__info-pill">
+                        <h3 class="yoga-card__title">05 — Full-Body Stretch</h3>
+                        <span class="yoga-card__arrow" aria-hidden="true">→</span>
+                    </div>
+                </article>
+
+                <!-- Card 6 (Hidden initially) -->
+                <article class="yoga-card yoga-card--hidden">
+                    <div class="yoga-card__image-container">
+                        <span class="yoga-card__bg-text" aria-hidden="true">YOGA</span>
+                        <div class="abstract-visual abstract-visual--yoga" aria-hidden="true"></div>
+                    </div>
+                    <div class="yoga-card__info-pill">
+                        <h3 class="yoga-card__title">06 — Strength Flow</h3>
+                        <span class="yoga-card__arrow" aria-hidden="true">→</span>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="yoga__action-container reveal reveal--delay-4">
+                <button type="button" class="btn btn-outline yoga__check-all" aria-expanded="false" id="yoga-toggle-btn">
+                    Check All
+                </button>
+            </div>
+        </section>
+
+        <section id="events" class="events section container" aria-labelledby="events-title">
+            <h2 id="events-title" class="visually-hidden">Events Exhibition</h2>
+            
+            <div class="events__header reveal reveal--delay-1">
+                <div class="events__exhibition">
+                    <span class="events__exhibition-text">EXHIBITION</span>
+                    <div class="decorative-radial events__exhibition-radial" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <div class="events__list">
+                <!-- Row 1 -->
+                <div class="events__row reveal reveal--delay-1">
+                    <span class="events__row-number">01</span>
+                    <div class="events__row-content">
+                        <h3 class="events__row-title">fitup wellness<br>expo</h3>
+                        <span class="events__row-meta">full-day event<br>01.03.2025<br>(hamida stadium)</span>
+                    </div>
+                    <a href="#events" class="btn btn-outline events__row-action">Reserve Your Spot</a>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="events__row reveal reveal--delay-2">
+                    <span class="events__row-number">02</span>
+                    <div class="events__row-content">
+                        <h3 class="events__row-title">mind balance<br>retreat</h3>
+                        <span class="events__row-meta">full-day event<br>08.03.2025<br>(hamida stadium)</span>
+                    </div>
+                    <a href="#events" class="btn btn-outline events__row-action">Reserve Your Spot</a>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="events__row reveal reveal--delay-3">
+                    <span class="events__row-number">03</span>
+                    <div class="events__row-content">
+                        <h3 class="events__row-title">training<br>workshop</h3>
+                        <span class="events__row-meta">full day workshop<br>14.04.2025<br>(hamida stadium)</span>
+                    </div>
+                    <a href="#events" class="btn btn-outline events__row-action">Reserve Your Spot</a>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="events__row reveal reveal--delay-4">
+                    <span class="events__row-number">04</span>
+                    <div class="events__row-content">
+                        <h3 class="events__row-title">meal planning<br>seminar</h3>
+                        <span class="events__row-meta">full day seminar<br>23.04.2025<br>(hamida stadium)</span>
+                    </div>
+                    <a href="#events" class="btn btn-outline events__row-action">Reserve Your Spot</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="site-footer" class="site-footer" aria-labelledby="footer-title">
+        <div class="site-footer__main container">
+            
+            <div class="site-footer__brand">
+                <a href="#hero" class="site-footer__logo fitup-emphasis" aria-label="FITUP home">
+                    FITUP
+                </a>
+                <p id="footer-title" class="site-footer__headline">
+                    Elevate your<br>everyday.
+                </p>
+            </div>
+
+            <nav class="site-footer__nav" aria-label="Footer navigation">
+                <div class="site-footer__nav-group">
+                    <span class="site-footer__nav-title">Menu</span>
+                    <ul class="site-footer__nav-list">
+                        <li><a href="#hero" class="site-footer__nav-link">Home</a></li>
+                        <li><a href="#why-fitup" class="site-footer__nav-link">Why Fitup</a></li>
+                        <li><a href="#meals" class="site-footer__nav-link">Meals</a></li>
+                        <li><a href="#yoga" class="site-footer__nav-link">Yoga</a></li>
+                        <li><a href="#events" class="site-footer__nav-link">Events</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer__nav-group">
+                    <span class="site-footer__nav-title">Social</span>
+                    <ul class="site-footer__nav-list">
+                        <li><a href="#" class="site-footer__nav-link">Instagram</a></li>
+                        <li><a href="#" class="site-footer__nav-link">Facebook</a></li>
+                        <li><a href="#" class="site-footer__nav-link">YouTube</a></li>
+                    </ul>
+                </div>
+                <div class="site-footer__nav-group site-footer__contact">
+                    <span class="site-footer__nav-title">Contact</span>
+                    <address class="site-footer__address">
+                        <a href="mailto:hello@fitup.com" class="site-footer__nav-link">hello@fitup.com</a>
+                        <br>
+                        <br>
+                        123 Wellness Ave,<br>
+                        New York, NY 10012
+                    </address>
+                </div>
+            </nav>
+        </div>
+
+        <div class="site-footer__bottom container">
+            <p class="site-footer__copyright">&copy; 2026 FITUP</p>
+            <div class="site-footer__legal">
+                <a href="#" class="site-footer__legal-link">Privacy Policy</a>
+                <a href="#" class="site-footer__legal-link">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

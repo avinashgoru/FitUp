@@ -93,21 +93,7 @@
     transition: transform var(--transition-slow);
 }
 
-.yoga-card__bg-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 900;
-    color: #ffffff;
-    opacity: 0.4;
-    z-index: 2;
-    pointer-events: none;
-    -webkit-user-select: none;
-    user-select: none;
-    letter-spacing: 0.05em;
-}
+
 
 .yoga-card:hover .yoga-card__image-container {
     transform: scale(1.02);

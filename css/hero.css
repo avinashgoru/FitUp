@@ -114,13 +114,6 @@
     box-shadow: var(--shadow-sm);
 }
 
-.hero__image-placeholder {
-    color: var(--color-text-muted);
-    font-size: var(--text-subheading);
-    font-weight: var(--font-weight-medium);
-    text-align: center;
-    padding: var(--space-4);
-}
 
 /* Floating Cards */
 .hero__overview {

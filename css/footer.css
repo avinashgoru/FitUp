@@ -22,14 +22,18 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
+    position: relative;
 }
 
-.site-footer__logo {
-    font-size: var(--text-heading);
-    color: var(--color-text);
-    text-decoration: none;
-    line-height: 1;
-    display: inline-block;
+.site-footer__radial {
+    position: absolute;
+    width: clamp(100px, 20vw, 200px);
+    height: clamp(100px, 20vw, 200px);
+    background: radial-gradient(circle, var(--color-border) 0%, transparent 70%);
+    top: -50%;
+    left: -20%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .site-footer__headline {
@@ -39,6 +43,36 @@
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-tight);
     margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Massive Wordmark */
+.site-footer__wordmark-container {
+    padding-top: var(--space-8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.site-footer__logo {
+    font-size: clamp(4rem, 18vw, 15rem);
+    font-weight: 900;
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    transition: opacity var(--transition-fast);
+}
+
+.site-footer__logo:hover {
+    opacity: 0.8;
 }
 
 /* Navigation & Contact */

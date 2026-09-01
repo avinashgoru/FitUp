@@ -39,13 +39,6 @@
     box-shadow: var(--shadow-sm);
 }
 
-.why-fitup__image-placeholder {
-    color: var(--color-text-muted);
-    font-size: var(--text-subheading);
-    font-weight: var(--font-weight-medium);
-    text-align: center;
-    padding: var(--space-4);
-}
 
 /* Decorative Radial Graphic */
 .why-fitup__decoration {

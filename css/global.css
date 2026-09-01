@@ -296,27 +296,6 @@ img, picture, svg, video {
     }
 }
 
-/* Abstract Visuals for Premium Aesthetic (Placeholder replacements) */
-.abstract-visual {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    background-color: var(--color-surface);
-}
-
-.abstract-visual--hero {
-    background: radial-gradient(circle at 70% 30%, var(--color-surface) 0%, #e8edf5 100%);
-}
-
-.abstract-visual--why-fitup {
-    background: linear-gradient(135deg, var(--color-surface) 0%, #e8edf5 100%);
-}
-
-.abstract-visual--yoga {
-    background: linear-gradient(45deg, var(--color-surface) 0%, #e8edf5 100%);
-}
 
 #meal-image {
     transition: filter var(--transition-normal);
@@ -326,6 +305,3 @@ img, picture, svg, video {
     filter: hue-rotate(20deg) brightness(1.05);
 }
 
-.abstract-visual--yoga {
-    background: linear-gradient(45deg, var(--color-surface) 0%, #e8edf5 100%);
-}

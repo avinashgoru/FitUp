@@ -1,36 +1,57 @@
-# FitUp
+# FITUP
 
 FitUp is a premium fitness and wellness platform designed with a modern, editorial aesthetic. This project focuses on delivering a sophisticated user experience with clean code and high performance.
 
-## Technology Stack
+## TECHNOLOGY
 - HTML5
-- CSS3 (Vanilla, custom properties)
+- CSS3 (Vanilla, Custom Properties, clamp() fluid scaling)
 - Vanilla JavaScript (ES6+)
 
 No frameworks or external UI libraries are used in this project to ensure a lightweight and maintainable codebase.
 
-## Folder Structure
+## STRUCTURE
 ```text
-fitup/
-├── index.html
-├── css/             # Modular CSS files
-├── js/              # Modular JavaScript files
-├── assets/          # Images, icons, and logos
-└── README.md
+FitUp-main/
+├── index.html       # Primary semantic layout
+├── README.md        # Project documentation
+├── robots.txt       # Search engine indexing rules
+├── assets/
+│   └── images/      # Premium photography assets (hero.jpg, why-fitup.jpg, meals.jpg)
+├── css/
+│   ├── reset.css    # Global element normalization
+│   ├── variables.css# Centralized tokens (colors, fonts, radius, shadows)
+│   ├── global.css   # Typographic foundations and utility classes
+│   ├── navbar.css   # Header and mobile menu
+│   ├── hero.css     # Hero section composition
+│   ├── why-fitup.css# Core value proposition layout
+│   ├── meals.css    # Nutrition visualization structure
+│   ├── yoga.css     # Yoga class grid component
+│   ├── events.css   # Editorial event listing
+│   ├── footer.css   # Global footer
+│   └── responsive.css # Component-agnostic media queries
+└── js/
+    ├── main.js        # Global initialization
+    ├── navigation.js  # Mobile modal menu and scroll locks
+    ├── meals.js       # Vegan/Non-Vegan UI selector logic
+    ├── yoga.js        # Check All button grid expander
+    ├── events.js      # Minimal event interaction
+    └── animations.js  # Subdued IntersectionObserver reveal system
 ```
 
-## Development Phases
-- **Phase 0:** Project Foundation & Architecture (Current)
-- **Phase 1-X:** Implementation of individual sections (Navbar, Hero, Why FitUp, Meals, Yoga, Events, Footer)
-
-## How to Run Locally
+## RUNNING LOCALLY
 Since this is a vanilla HTML/CSS/JS project, you can simply serve the project directory using any local development server. 
 For example, using Python or Node.js:
-- Python 3: `python -m http.server 8000`
 - Node.js (npx): `npx serve`
+- Python 3: `python -m http.server 8000`
 - Or use the "Live Server" extension in VS Code.
 
-## Architecture Decisions
-- **CSS Modularity:** Each section has its own CSS file to prevent conflicts and ensure maintainability.
-- **Variables:** A global design system is established in `variables.css`.
-- **Responsive Design:** Breakpoints are managed centrally, adopting a mobile-responsive approach.
+## FEATURES
+- **Responsive Navigation:** Accessible, modal-style mobile menu with lock-scroll.
+- **Meal Selector:** Clean client-side Vegan vs Non-Vegan toggle without page reloads.
+- **Yoga Interaction:** Interactive grid expansion button for class discovery.
+- **Events:** Responsive layout stack for editorial events.
+- **Responsive Layout:** Hardened structural CSS providing 100% responsiveness from 320px mobile to 2560px ultra-wide without horizontal overflow.
+
+## KNOWN LIMITATIONS
+- **Yoga Assets:** Dedicated physical photography assets for the Yoga section are not currently present in the project. The section uses CSS-generated abstract placeholders (linear-gradient) as a visual fallback until final photography is provided.
+- **Static Form Actions:** The "Contact Us" and "Reserve Your Spot" buttons do not have backend endpoints connected.

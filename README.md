@@ -53,5 +53,5 @@ For example, using Python or Node.js:
 - **Responsive Layout:** Hardened structural CSS providing 100% responsiveness from 320px mobile to 2560px ultra-wide without horizontal overflow.
 
 ## KNOWN LIMITATIONS
-- **Yoga Assets:** Dedicated physical photography assets for the Yoga section are not currently present in the project. The section uses CSS-generated abstract placeholders (linear-gradient) as a visual fallback until final photography is provided.
+- **Yoga Assets:** Dedicated physical photography assets for all 6 Yoga cards are not currently present in the workspace. To satisfy layout constraints without producing broken grid visuals, the section elegantly loops the existing premium fitness photography (`hero.jpg`, `why-fitup.jpg`) until distinct assets are provided.
 - **Static Form Actions:** The "Contact Us" and "Reserve Your Spot" buttons do not have backend endpoints connected.

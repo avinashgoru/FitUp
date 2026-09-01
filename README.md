@@ -97,17 +97,22 @@ FitUp currently functions as an exceptional presentation-tier static application
 ## PHASE 10: DEPLOYMENT & REAL APPLICATION ARCHITECTURE
 
 ### Architecture Strategy
+
 To cross the boundary from "Static MVP" to "Real Application", FitUp proposes migrating to **Next.js (App Router)** as the Meta-Framework and **Supabase (PostgreSQL)** as the Backend-as-a-Service (BaaS). This stack allows us to preserve the existing CSS architecture globally while converting the native DOM nodes into React Server Components for robust data fetching and authentication.
 
 ### Database Strategy (Supabase/PostgreSQL)
-A relational database is mandatory to manage strict constraints around Event RSVPs (capacity limits). 
+
+A relational database is mandatory to manage strict constraints around Event RSVPs (capacity limits).
+
 - **Core Schema:** `users`, `profiles`, `meals`, `yoga_sessions`, `events`, `reservations`
 - **Security:** Utilize Postgres Row Level Security (RLS) to ensure users can only mutate their own `reservations` and `profiles`.
 
 ### Authentication
+
 Authentication will be handled via **Supabase Auth** (JWT-based). Sessions will be securely managed in HTTP-only cookies to allow Next.js middleware to protect private routes (e.g., `/dashboard`) and hydrate the user profile server-side before rendering.
 
 ### Environment Setup & Deployment
+
 - **Deployment:** Vercel (Edge-optimized for Next.js).
 - **Environment Variables:**
   - `NEXT_PUBLIC_SUPABASE_URL`

@@ -119,3 +119,20 @@ Authentication will be handled via **Supabase Auth** (JWT-based). Sessions will 
   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
   - (Never commit the `SUPABASE_SERVICE_ROLE_KEY` to the frontend).
 - **Development Workflow:** A `.env.example` file will be provided containing placeholder keys. Local development will utilize the Supabase CLI to spin up a local Dockerized Postgres instance to ensure parity with production.
+
+## PHASE 11: PRODUCTION OPERATIONS & ADMIN SYSTEM
+
+### Role-Based Access Control (RBAC)
+To prevent unauthorized access, operations rely on strict backend-driven RBAC via Postgres Row-Level Security (RLS) policies rather than fragile client-side hidden UI components.
+- **`USER` Role:** Permitted to query published Meals/Events/Yoga content. Can mutate only rows in `reservations` and `profiles` where `user_id == auth.uid()`.
+- **`ADMIN` Role:** Unrestricted mutation access to all content grids, `events`, and `users` tables.
+
+### Admin Dashboard Architecture
+A future `/admin` route group (protected by server-side middleware validating the `ADMIN` JWT claim) will host the operational CMS.
+- **Content Operations:** Full CRUD capabilities for Meals (Draft/Publish/Archive), Yoga sessions, and Event listings.
+- **User Operations:** Capabilities to view active user counts and manage account statuses (e.g., suspending malicious accounts).
+- **Data Integrity:** Soft deletion strategy (Archiving) is enforced over hard deletions (`DELETE` commands) to prevent cascading foreign-key violations against historical user reservations.
+
+### Security & Auditing
+- **API Security:** All admin mutations (`POST`, `PATCH`, `DELETE`) require a valid server-side session verified against the `ADMIN` role.
+- **Audit Logging:** Destructive or high-impact actions (e.g., archiving an event) will trigger a Postgres trigger or Edge Function to write immutable records to an `audit_logs` table (`actor_id`, `action`, `timestamp`) for compliance and observability.

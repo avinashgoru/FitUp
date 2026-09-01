@@ -55,3 +55,30 @@ For example, using Python or Node.js:
 ## KNOWN LIMITATIONS
 - **Yoga Assets:** Dedicated physical photography assets for all 6 Yoga cards are not currently present in the workspace. To satisfy layout constraints without producing broken grid visuals, the section elegantly loops the existing premium fitness photography (`hero.jpg`, `why-fitup.jpg`) until distinct assets are provided.
 - **Static Form Actions:** The "Contact Us" and "Reserve Your Spot" buttons do not have backend endpoints connected.
+
+## PHASE 8: FUTURE PRODUCT ARCHITECTURE
+
+### Frontend Architecture
+FitUp currently functions as an exceptional presentation-tier static application. The frontend architecture isolates concerns via modular CSS tokens (`variables.css`) and modular vanilla JavaScript files (`meals.js`, `yoga.js`, `events.js`) providing a highly stable ground for future framework adoption or API integration without tearing down the existing DOM structures or UI styling.
+
+### Data Architecture (Conceptual Models)
+- **USER:** `id`, `name`, `email`, `preferences`, `savedFavorites`
+- **MEAL:** `id`, `name`, `calories`, `dietaryType` (Vegan/Non-Vegan)
+- **YOGA_SESSION:** `id`, `title`, `duration`, `image_url`, `description`
+- **EVENT:** `id`, `title`, `date`, `location`, `capacity`
+- **RESERVATION:** `id`, `user_id`, `event_id`, `status` (Confirmed/Waitlisted)
+
+### Future Backend Boundaries
+- **Authentication:** Token-based (JWT) auth boundary protecting a future dashboard.
+- **Reservations & Transactions:** Secure server-side processing for Event RSVPs to prevent capacity race conditions.
+- **Content APIs:** Delivering dynamic payload responses for `GET /meals`, `GET /yoga`, and `GET /events` allowing non-engineers to publish new content via CMS.
+
+### Future Product Modules
+- **User Dashboard & Profile:** A secure routing area reflecting individual progress, personalized meal recommendations, and upcoming RSVP'd events.
+- **Favorites System:** Persistent saving logic allowing users to bookmark Yoga classes.
+- **Notifications Engine:** Real-time push or email notifications regarding event confirmations.
+
+### Recommended Next Technical Steps
+1. **API Integration Readiness:** Introduce a lightweight `fetch` wrapper inside `main.js` to begin mocking API payload ingestion for Meals and Yoga components.
+2. **Component Framework Migration (Optional):** If the data surface area grows significantly (e.g. User Dashboards, complex state filtering), consider porting the native DOM components into a lightweight VDOM framework (like Preact or Vue) while 100% preserving the existing CSS architecture.
+3. **Database Prototyping:** Stand up a headless CMS or BaaS (e.g. Supabase, Firebase) to convert hardcoded HTML grid items into dynamic collections.

@@ -1,12 +1,9 @@
-import { initNavigation } from './navigation.js';
-import { initMeals } from './meals.js';
-import { initYoga } from './yoga.js';
-import { initEvents } from './events.js';
-import { initAnimations } from './animations.js';
+/**
+ * FITUP Entry Point
+ * Delegates immediately to the Application Orchestrator.
+ */
+import { app } from './app/app.js';
 
-// Initialize global components
-initNavigation();
-initMeals();
-initYoga();
-initEvents();
-initAnimations();
+document.addEventListener('DOMContentLoaded', () => {
+    app.init();
+});

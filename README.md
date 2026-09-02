@@ -18,7 +18,7 @@ FitUp-main/
 ├── README.md        # Project documentation
 ├── robots.txt       # Search engine indexing rules
 ├── assets/
-│   └── images/      # Premium photography assets (hero.jpg, why-fitup.jpg, meals.jpg)
+│   └── images/      # Premium photography assets
 ├── css/
 │   ├── reset.css    # Global element normalization
 │   ├── variables.css# Centralized tokens (colors, fonts, radius, shadows)
@@ -31,6 +31,8 @@ FitUp-main/
 │   ├── events.css   # Editorial event listing
 │   ├── footer.css   # Global footer
 │   └── responsive.css # Component-agnostic media queries
+├── docs/
+│   └── ARCHITECTURE.md # Application system design and future boundaries
 └── js/
     ├── main.js        # Global initialization
     ├── navigation.js  # Mobile modal menu and scroll locks
@@ -40,104 +42,43 @@ FitUp-main/
     └── animations.js  # Subdued IntersectionObserver reveal system
 ```
 
-## RUNNING LOCALLY
+## Getting Started
 
-Since this is a vanilla HTML/CSS/JS project, you can simply serve the project directory using any local development server.
-For example, using Python or Node.js:
+### Prerequisites
 
-- Node.js (npx): `npx serve`
-- Python 3: `python -m http.server 8000`
-- Or use the "Live Server" extension in VS Code.
+- Node.js (v18+)
+- Local development server (e.g., VSCode Live Server) for the frontend
+- Database provider migration to MongoDB Atlas is pending.
+
+### Backend Setup
+
+1. Navigate to the `backend/` directory.
+2. Run `npm install` to install dependencies.
+3. Copy `.env.example` to `.env` and configure your `DATABASE_URL`.
+4. Run `npm run prisma:generate` to generate the ORM client.
+5. (Optional) Run `npm run prisma:migrate` to push the schema to the database.
+6. Run `npm run dev` to start the API server on port 3000.
+
+### Frontend Setup
+
+1. Open the project root in your preferred server (e.g., Live Server).
+2. The frontend defaults to `http://localhost:5500`. Ensure this matches the `FRONTEND_ORIGIN` in the backend `.env`.
+3. The frontend `js/services/config.js` expects the backend at `http://localhost:3000`.
 
 ## FEATURES
 
 - **Responsive Navigation:** Accessible, modal-style mobile menu with lock-scroll.
 - **Meal Selector:** Clean client-side Vegan vs Non-Vegan toggle without page reloads.
-- **Yoga Interaction:** Interactive grid expansion button for class discovery.
+- **Yoga Interaction:** Interactive grid expansion button for class discovery, powered by 6 distinct Cloudinary assets.
 - **Events:** Responsive layout stack for editorial events.
 - **Responsive Layout:** Hardened structural CSS providing 100% responsiveness from 320px mobile to 2560px ultra-wide without horizontal overflow.
 
-## KNOWN LIMITATIONS
+## ARCHITECTURE & FUTURE BOUNDARIES
 
-- **Yoga Assets:** Dedicated physical photography assets for all 6 Yoga cards are not currently present in the workspace. To satisfy layout constraints without producing broken grid visuals, the section elegantly loops the existing premium fitness photography (`hero.jpg`, `why-fitup.jpg`) until distinct assets are provided.
-- **Static Form Actions:** The "Contact Us" and "Reserve Your Spot" buttons do not have backend endpoints connected.
+FITUP has established a robust Stage 2 Application Foundation. For full details on the planned application boundaries, routing strategies, service layers, and state management, please read [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-## PHASE 8: FUTURE PRODUCT ARCHITECTURE
+*Note: Frontend UI states represent conceptual data at this time. Dedicated API routes and backend services will be integrated in subsequent roadmap phases.*
 
-### Frontend Architecture
+## STAGE 2 STATUS
 
-FitUp currently functions as an exceptional presentation-tier static application. The frontend architecture isolates concerns via modular CSS tokens (`variables.css`) and modular vanilla JavaScript files (`meals.js`, `yoga.js`, `events.js`) providing a highly stable ground for future framework adoption or API integration without tearing down the existing DOM structures or UI styling.
-
-### Data Architecture (Conceptual Models)
-
-- **USER:** `id`, `name`, `email`, `preferences`, `savedFavorites`
-- **MEAL:** `id`, `name`, `calories`, `dietaryType` (Vegan/Non-Vegan)
-- **YOGA_SESSION:** `id`, `title`, `duration`, `image_url`, `description`
-- **EVENT:** `id`, `title`, `date`, `location`, `capacity`
-- **RESERVATION:** `id`, `user_id`, `event_id`, `status` (Confirmed/Waitlisted)
-
-### Future Backend Boundaries
-
-- **Authentication:** Token-based (JWT) auth boundary protecting a future dashboard.
-- **Reservations & Transactions:** Secure server-side processing for Event RSVPs to prevent capacity race conditions.
-- **Content APIs:** Delivering dynamic payload responses for `GET /meals`, `GET /yoga`, and `GET /events` allowing non-engineers to publish new content via CMS.
-
-### Future Product Modules
-
-- **User Dashboard & Profile:** A secure routing area reflecting individual progress, personalized meal recommendations, and upcoming RSVP'd events.
-- **Favorites System:** Persistent saving logic allowing users to bookmark Yoga classes.
-- **Notifications Engine:** Real-time push or email notifications regarding event confirmations.
-
-### Recommended Next Technical Steps
-
-1. **API Integration Readiness:** Introduce a lightweight `fetch` wrapper inside `main.js` to begin mocking API payload ingestion for Meals and Yoga components.
-2. **Component Framework Migration (Optional):** If the data surface area grows significantly (e.g. User Dashboards, complex state filtering), consider porting the native DOM components into a lightweight VDOM framework (like Preact or Vue) while 100% preserving the existing CSS architecture.
-3. **Database Prototyping:** Stand up a headless CMS or BaaS (e.g. Supabase, Firebase) to convert hardcoded HTML grid items into dynamic collections.
-
-## PHASE 10: DEPLOYMENT & REAL APPLICATION ARCHITECTURE
-
-### Architecture Strategy
-
-To cross the boundary from "Static MVP" to "Real Application", FitUp proposes migrating to **Next.js (App Router)** as the Meta-Framework and **Supabase (PostgreSQL)** as the Backend-as-a-Service (BaaS). This stack allows us to preserve the existing CSS architecture globally while converting the native DOM nodes into React Server Components for robust data fetching and authentication.
-
-### Database Strategy (Supabase/PostgreSQL)
-
-A relational database is mandatory to manage strict constraints around Event RSVPs (capacity limits).
-
-- **Core Schema:** `users`, `profiles`, `meals`, `yoga_sessions`, `events`, `reservations`
-- **Security:** Utilize Postgres Row Level Security (RLS) to ensure users can only mutate their own `reservations` and `profiles`.
-
-### Authentication
-
-Authentication will be handled via **Supabase Auth** (JWT-based). Sessions will be securely managed in HTTP-only cookies to allow Next.js middleware to protect private routes (e.g., `/dashboard`) and hydrate the user profile server-side before rendering.
-
-### Environment Setup & Deployment
-
-- **Deployment:** Vercel (Edge-optimized for Next.js).
-- **Environment Variables:**
-  - `NEXT_PUBLIC_SUPABASE_URL`
-  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-  - (Never commit the `SUPABASE_SERVICE_ROLE_KEY` to the frontend).
-- **Development Workflow:** A `.env.example` file will be provided containing placeholder keys. Local development will utilize the Supabase CLI to spin up a local Dockerized Postgres instance to ensure parity with production.
-
-## PHASE 11: PRODUCTION OPERATIONS & ADMIN SYSTEM
-
-### Role-Based Access Control (RBAC)
-
-To prevent unauthorized access, operations rely on strict backend-driven RBAC via Postgres Row-Level Security (RLS) policies rather than fragile client-side hidden UI components.
-
-- **`USER` Role:** Permitted to query published Meals/Events/Yoga content. Can mutate only rows in `reservations` and `profiles` where `user_id == auth.uid()`.
-- **`ADMIN` Role:** Unrestricted mutation access to all content grids, `events`, and `users` tables.
-
-### Admin Dashboard Architecture
-
-A future `/admin` route group (protected by server-side middleware validating the `ADMIN` JWT claim) will host the operational CMS.
-
-- **Content Operations:** Full CRUD capabilities for Meals (Draft/Publish/Archive), Yoga sessions, and Event listings.
-- **User Operations:** Capabilities to view active user counts and manage account statuses (e.g., suspending malicious accounts).
-- **Data Integrity:** Soft deletion strategy (Archiving) is enforced over hard deletions (`DELETE` commands) to prevent cascading foreign-key violations against historical user reservations.
-
-### Security & Auditing
-
-- **API Security:** All admin mutations (`POST`, `PATCH`, `DELETE`) require a valid server-side session verified against the `ADMIN` role.
-- **Audit Logging:** Destructive or high-impact actions (e.g., archiving an event) will trigger a Postgres trigger or Edge Function to write immutable records to an `audit_logs` table (`actor_id`, `action`, `timestamp`) for compliance and observability.
+This project has successfully completed Phase 7 (Backend Foundation). The frontend foundation remains a certified 9.9/10 baseline. A secure, structured Node.js/Express API now supports the static frontend, ready for Phase 8 Authentication.

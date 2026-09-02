@@ -161,6 +161,13 @@
     background-color: var(--color-primary);
     border-radius: var(--radius-sm) var(--radius-sm) 0 0;
     opacity: 0.8;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.hero__chart-bar:hover {
+    opacity: 1;
+    transform: scaleY(1.05);
+    transform-origin: bottom;
 }
 
 .hero__chart-bar:last-child {

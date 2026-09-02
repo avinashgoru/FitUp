@@ -11,6 +11,11 @@
     <meta property="og:description" content="FitUp is a premium fitness and wellness platform offering balanced meals, yoga styles, and community events.">
     <meta property="og:type" content="website">
     
+    <!-- Twitter/X SEO -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FitUp - Premium Wellness & Fitness">
+    <meta name="twitter:description" content="FitUp is a premium fitness and wellness platform offering balanced meals, yoga styles, and community events.">
+    
     <!-- CSS -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
@@ -22,6 +27,11 @@
     <link rel="stylesheet" href="css/yoga.css">
     <link rel="stylesheet" href="css/events.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/onboarding.css">
+    <link rel="stylesheet" href="css/workouts.css">
+    <link rel="stylesheet" href="css/meals-app.css">
+    <link rel="stylesheet" href="css/yoga-app.css">
     <link rel="stylesheet" href="css/responsive.css">
     
     <!-- JS -->
@@ -261,7 +271,7 @@
                 <!-- Card 1 -->
                 <article class="yoga-card reveal reveal--delay-1">
                     <div class="yoga-card__image-container">
-                        <img src="assets/images/why-fitup.jpg" alt="Person performing a stretching pose" class="img-cover">
+                        <img src="https://res.cloudinary.com/dikdrwvpv/image/upload/v1788328062/b0eb873ea13dfc5e0746c56d89d01be8.jpg" alt="Woman practicing a seated yoga stretch" class="img-cover" loading="lazy" decoding="async">
                     </div>
                     <div class="yoga-card__info-pill">
                         <h3 class="yoga-card__title">01 — Muscle Stretch</h3>
@@ -272,7 +282,7 @@
                 <!-- Card 2 -->
                 <article class="yoga-card reveal reveal--delay-2">
                     <div class="yoga-card__image-container">
-                        <img src="assets/images/hero.jpg" alt="Person performing a relaxation pose" class="img-cover">
+                        <img src="https://res.cloudinary.com/dikdrwvpv/image/upload/v1788328185/c898683ceb741a858a49065e9617c794.jpg" alt="Woman sitting in a calm meditation pose" class="img-cover" loading="lazy" decoding="async">
                     </div>
                     <div class="yoga-card__info-pill">
                         <h3 class="yoga-card__title">02 — Relaxation Stretch</h3>
@@ -283,7 +293,7 @@
                 <!-- Card 3 -->
                 <article class="yoga-card reveal reveal--delay-3">
                     <div class="yoga-card__image-container">
-                        <!-- Missing distinct asset -->
+                        <img src="https://res.cloudinary.com/dikdrwvpv/image/upload/v1788328305/58c149cfda4872a1f8f7b240de15f8a2.jpg" alt="Woman practicing a seated balance yoga pose" class="img-cover" loading="lazy" decoding="async">
                     </div>
                     <div class="yoga-card__info-pill">
                         <h3 class="yoga-card__title">03 — Balance Booster</h3>
@@ -294,7 +304,7 @@
                 <!-- Card 4 (Hidden initially) -->
                 <article class="yoga-card yoga-card--hidden">
                     <div class="yoga-card__image-container">
-                        <!-- Missing distinct asset -->
+                        <img src="https://res.cloudinary.com/dikdrwvpv/image/upload/v1788328663/54ac62290e6b418201c671a5b685ba22.jpg" alt="Woman preparing for a yoga practice on a mat" class="img-cover" loading="lazy" decoding="async">
                     </div>
                     <div class="yoga-card__info-pill">
                         <h3 class="yoga-card__title">04 — Flexibility Enhancer</h3>
@@ -305,7 +315,7 @@
                 <!-- Card 5 (Hidden initially) -->
                 <article class="yoga-card yoga-card--hidden">
                     <div class="yoga-card__image-container">
-                        <!-- Missing distinct asset -->
+                        <img src="https://res.cloudinary.com/dikdrwvpv/image/upload/v1788328698/47ccbabce93f665df6370557c3391963.jpg" alt="Woman seated comfortably on a yoga mat" class="img-cover" loading="lazy" decoding="async">
                     </div>
                     <div class="yoga-card__info-pill">
                         <h3 class="yoga-card__title">05 — Full-Body Stretch</h3>
@@ -316,7 +326,7 @@
                 <!-- Card 6 (Hidden initially) -->
                 <article class="yoga-card yoga-card--hidden">
                     <div class="yoga-card__image-container">
-                        <!-- Missing distinct asset -->
+                        <img src="https://res.cloudinary.com/dikdrwvpv/image/upload/v1788328748/3ebbcbc82b89d1d0777a1e89a172e64b.jpg" alt="Woman practicing a relaxed seated yoga pose" class="img-cover" loading="lazy" decoding="async">
                     </div>
                     <div class="yoga-card__info-pill">
                         <h3 class="yoga-card__title">06 — Strength Flow</h3>
@@ -441,6 +451,32 @@
             </div>
         </div>
     </footer>
+
+    <!-- PHASE 8: Authentication & Protected Shells -->
+    <div id="auth-shell" class="hidden-shell">
+        <div id="login-view" class="auth-view container hidden-shell"></div>
+        <div id="signup-view" class="auth-view container hidden-shell"></div>
+    </div>
+
+    <!-- PHASE 9: Onboarding Shell -->
+    <div id="onboarding-shell" class="hidden-shell"></div>
+
+    <!-- PHASE 10: App Shell & Workouts -->
+    <div id="app-shell" class="app-dashboard container hidden-shell">
+        <div id="dashboard-view" class="hidden-shell"></div>
+        <div id="workout-library-shell" class="hidden-shell"></div>
+        <div id="workout-detail-shell" class="hidden-shell"></div>
+        <div id="workout-session-shell" class="hidden-shell"></div>
+        
+        <!-- PHASE 11: Meals -->
+        <div id="meal-library-shell" class="hidden-shell"></div>
+        <div id="meal-detail-shell" class="hidden-shell"></div>
+        
+        <!-- PHASE 12: Yoga -->
+        <div id="yoga-library-shell" class="hidden-shell"></div>
+        <div id="yoga-detail-shell" class="hidden-shell"></div>
+        <div id="yoga-session-shell" class="hidden-shell"></div>
+    </div>
 
 </body>
 </html>

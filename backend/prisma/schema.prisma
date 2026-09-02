@@ -1,0 +1,363 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --------------------------------------------------
+// FOUNDATIONAL DOMAIN MODEL
+// --------------------------------------------------
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String
+  role         Role      @default(USER)
+  
+  profile         Profile?
+  sessions        Session[]
+  workoutSessions WorkoutSession[]
+  mealLogs        MealLog[]
+  yogaSessions    YogaPracticeSession[]
+  
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Session {
+  id         String    @id @default(uuid())
+  tokenHash  String    @unique
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  
+  createdAt  DateTime  @default(now())
+  
+  @@index([tokenHash])
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+enum FitnessGoal {
+  STRENGTH
+  WEIGHT_MANAGEMENT
+  MOBILITY
+  GENERAL_FITNESS
+}
+
+enum ExperienceLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum RoutinePreference {
+  QUICK
+  BALANCED
+  DEDICATED
+}
+
+model Profile {
+  id                String             @id @default(uuid())
+  userId            String             @unique
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  displayName       String?
+  
+  // Phase 9 Personalization Fields
+  goal              FitnessGoal?
+  experienceLevel   ExperienceLevel?
+  routinePreference RoutinePreference?
+  
+  // Phase 11 Nutrition Preference
+  dietaryPreference DietaryType?
+  
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+enum DietaryType {
+  VEGAN
+  VEGETARIAN
+  NON_VEGETARIAN
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+}
+
+// --------------------------------------------------
+// NUTRITION DOMAIN (PHASE 11)
+// --------------------------------------------------
+
+model Meal {
+  id                     String             @id @default(uuid())
+  name                   String
+  slug                   String             @unique
+  description            String
+  mealType               MealType
+  dietaryType            DietaryType
+  
+  calories               Int
+  protein                Float
+  carbohydrates          Float
+  fats                   Float
+  
+  preparationTimeMinutes Int
+  servings               Int                @default(1)
+  instructions           String?            @db.Text
+  
+  goals                  MealGoal[]
+  ingredients            MealIngredient[]
+  logs                   MealLog[]
+  
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+  
+  @@index([dietaryType])
+  @@index([mealType])
+}
+
+model MealGoal {
+  mealId String
+  goal   FitnessGoal
+  meal   Meal        @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  
+  @@id([mealId, goal])
+}
+
+model MealIngredient {
+  id       String @id @default(uuid())
+  mealId   String
+  name     String
+  quantity Float
+  unit     String
+  
+  meal     Meal   @relation(fields: [mealId], references: [id], onDelete: Cascade)
+}
+
+model MealLog {
+  id           String   @id @default(uuid())
+  userId       String
+  mealId       String
+  servingCount Float    @default(1)
+  loggedAt     DateTime @default(now())
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meal         Meal     @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([loggedAt])
+}
+
+// --------------------------------------------------
+// WORKOUT DOMAIN (PHASE 10)
+// --------------------------------------------------
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum Equipment {
+  BODYWEIGHT
+  DUMBBELL
+  KETTLEBELL
+  BARBELL
+  MACHINE
+  RESISTANCE_BAND
+  MAT
+  OTHER
+}
+
+model Exercise {
+  id              String             @id @default(uuid())
+  name            String
+  slug            String             @unique
+  description     String?
+  instructions    String?
+  difficulty      Difficulty
+  equipment       Equipment          @default(BODYWEIGHT)
+  
+  workouts        WorkoutExercise[]
+  
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+}
+
+model Workout {
+  id                String             @id @default(uuid())
+  title             String
+  slug              String             @unique
+  description       String
+  durationMinutes   Int
+  difficulty        Difficulty
+  
+  // Alignment with Phase 9 Profile Enums
+  goal              FitnessGoal
+  experienceLevel   ExperienceLevel
+  routinePreference RoutinePreference
+  
+  exercises         WorkoutExercise[]
+  sessions          WorkoutSession[]
+  
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  
+  @@index([goal])
+  @@index([experienceLevel])
+  @@index([routinePreference])
+  @@index([difficulty])
+}
+
+model WorkoutExercise {
+  id           String   @id @default(uuid())
+  workoutId    String
+  exerciseId   String
+  order        Int
+  sets         Int?
+  reps         Int?
+  durationSecs Int?
+  restSecs     Int?
+  
+  workout      Workout  @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  exercise     Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+
+  @@unique([workoutId, order])
+}
+
+enum SessionStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+model WorkoutSession {
+  id          String        @id @default(uuid())
+  userId      String
+  workoutId   String
+  status      SessionStatus @default(IN_PROGRESS)
+  startedAt   DateTime      @default(now())
+  completedAt DateTime?
+  
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workout     Workout       @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([workoutId])
+  @@index([status])
+}
+
+// --------------------------------------------------
+// YOGA DOMAIN (PHASE 12)
+// --------------------------------------------------
+
+enum YogaLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum YogaStyle {
+  HATHA
+  VINYASA
+  RESTORATIVE
+  MOBILITY
+  BREATHWORK
+  MINDFULNESS
+}
+
+model YogaPose {
+  id              String             @id @default(uuid())
+  name            String
+  slug            String             @unique
+  description     String
+  level           YogaLevel
+  style           YogaStyle
+  benefits        String
+  instructions    String
+  durationSeconds Int
+  imageUrl        String?
+  
+  practices       YogaPracticePose[]
+  
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+}
+
+model YogaPractice {
+  id                String             @id @default(uuid())
+  name              String
+  slug              String             @unique
+  description       String
+  durationMinutes   Int
+  level             YogaLevel
+  style             YogaStyle
+  
+  // Alignment with Phase 9 Profile Enums
+  goal              FitnessGoal
+  experienceLevel   ExperienceLevel
+  routinePreference RoutinePreference
+  
+  coverImage        String
+  introduction      String
+  
+  poses             YogaPracticePose[]
+  sessions          YogaPracticeSession[]
+  
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  
+  @@index([goal])
+  @@index([experienceLevel])
+  @@index([routinePreference])
+  @@index([level])
+  @@index([style])
+}
+
+model YogaPracticePose {
+  id              String   @id @default(uuid())
+  practiceId      String
+  poseId          String
+  order           Int
+  durationSeconds Int
+  cue             String?
+  
+  practice        YogaPractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+  pose            YogaPose     @relation(fields: [poseId], references: [id], onDelete: Cascade)
+
+  @@unique([practiceId, order])
+}
+
+model YogaPracticeSession {
+  id          String        @id @default(uuid())
+  userId      String
+  practiceId  String
+  status      SessionStatus @default(IN_PROGRESS)
+  startedAt   DateTime      @default(now())
+  completedAt DateTime?
+  
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  practice    YogaPractice  @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([practiceId])
+  @@index([status])
+}

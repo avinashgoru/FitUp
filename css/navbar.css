@@ -47,14 +47,14 @@
 .navbar__link::after {
     content: '';
     position: absolute;
-    bottom: -4px;
+    bottom: -6px;
     left: 0;
     width: 100%;
-    height: 1px;
-    background-color: currentColor;
+    height: 2px;
+    background-color: var(--color-primary);
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform var(--transition-fast);
+    transition: transform var(--transition-normal);
 }
 
 .navbar__link:hover, .navbar__link:focus-visible {
